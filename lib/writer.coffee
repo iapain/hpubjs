@@ -86,11 +86,11 @@ class Writer
         series = _.union series, result
         series = _.union series, @assetFiles
         async.forEachSeries series, (file, next) =>
-            archive.addFile fs.createReadStream("#{@folder}/#{file}"), {name: "#{file}"}, -> 
-                next()
-          , (err) ->
-            archive.finalize (written) ->
-                callback(written)
+          archive.addFile fs.createReadStream("#{@folder}/#{file}"), {name: "#{file}"}, ->
+            next()
+        , (err) ->
+          archive.finalize (written) ->
+            callback(written)
 
 
 exports.Writer = Writer
